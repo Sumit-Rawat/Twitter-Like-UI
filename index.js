@@ -4,42 +4,43 @@ const loginPage = document.querySelector('.login-page');
 const newsFeedsPage = document.querySelector('.feeds-page');
 const loginModal = document.querySelector('.login-modal');
 const middleContent = document.querySelector('.middle-content');
-const btnTop= document.querySelector('.btn-top');
+const btnTop = document.querySelector('.btn-top');
 const modalX = document.querySelector('.login-modal i');
-const loginFormBtn=document.querySelector('.login-form-btn');
-const postBtn=document.querySelector('.post-btn');
+const loginFormBtn = document.querySelector('.login-form-btn');
+const postBtn = document.querySelector('.post-btn');
 const modalWrappper = document.querySelector('.modal-wrapper');
 const modal = document.querySelector('.modal');
-const postModalX=document.querySelector('.modal-header i');
-const modalPostBtn=document.querySelector('.modal-header button');
-const modalFooterPlus= document.querySelector('.modal-footer span');
+const postModalX = document.querySelector('.modal-header i');
+const modalPostBtn = document.querySelector('.modal-header button');
+const modalFooterPlus = document.querySelector('.modal-footer span');
 const modalInput = document.querySelector('.modal-input');
-
+const user = document.querySelector('.user');
+const sidebar = document.querySelector('.sidebar');
+const sidebarWrappper = document.querySelector('.sidebar-wrapper');
+const xBtn = document.querySelector('.sidebar-header i');
 
 /**************************************/
 /**************************************/
 
 // Main page
 const goToLoginPage = () => {
-	mainPage.style.display = 'none';
-	loginPage.style.display = 'grid';
+    mainPage.style.display = 'none';
+    loginPage.style.display = 'grid';
 };
 
 middleContent.addEventListener('click', e => {
-	if (e.target.classList[1] === 'main-btn') {
-		goToLoginPage();
-	}
+    if (e.target.classList[1] === 'main-btn') {
+        goToLoginPage();
+    }
 });
 
 btnTop.addEventListener('click', () => {
-    const inputUserInfo=document.querySelector('.user-info');
+    const inputUserInfo = document.querySelector('.user-info');
     const inputPassword = document.querySelector('.password');
-    if(inputUserInfo.value !== "" && inputPassword.value !== "")
-    {
+    if (inputUserInfo.value !== "" && inputPassword.value !== "") {
         mainPage.style.display = 'none';
         newsFeedsPage.style.display = 'block';
-    }
-    else{
+    } else {
         goToLoginPage();
         loginModal.style.display = 'block';
     }
@@ -53,14 +54,12 @@ modalX.addEventListener('click', () => {
 });
 
 loginFormBtn.addEventListener('click', () => {
-    const loginUserInfo=document.querySelector('.login-user-info');
+    const loginUserInfo = document.querySelector('.login-user-info');
     const loginPassword = document.querySelector('.login-password');
-    if(loginUserInfo.value !== "" && loginPassword.value !== "")
-    {
+    if (loginUserInfo.value !== "" && loginPassword.value !== "") {
         loginPage.style.display = 'none';
         newsFeedsPage.style.display = 'block';
-    }
-    else{
+    } else {
         loginModal.style.display = 'block';
     }
 });
@@ -76,30 +75,39 @@ postBtn.addEventListener('click', () => {
 });
 
 const changeOpacity = (x) => {
-    modalPostBtn.style.opacity =x;
-    modalFooterPlus.style.opacity=x;
+    modalPostBtn.style.opacity = x;
+    modalFooterPlus.style.opacity = x;
 };
 
 postModalX.addEventListener('click', () => {
     modal.style.display = 'none';
     modalWrappper.classList.remove('modal-wrapper-display');
-    if(modalInput.value !== "")
-    {
-        modalInput.value ="";
+    if (modalInput.value !== "") {
+        modalInput.value = "";
         changeOpacity(0.5);
     }
 });
 
 modalInput.addEventListener('keypress', (e) => {
-    if(e.target.value !== "")
-    {
+    if (e.target.value !== "") {
         changeOpacity(1);
     }
 });
 
-modalInput.addEventListener('blur',(e)=>{
-    if(e.target.value === "")
-    {
+modalInput.addEventListener('blur', (e) => {
+    if (e.target.value === "") {
         changeOpacity(.5);
     }
+})
+
+// sidebar
+
+user.addEventListener('click', () => {
+    sidebar.classList.add('sidebar-display');
+    sidebarWrappper.classList.add('sidebar-wrapper-display');
+});
+
+xBtn.addEventListener('click', () => {
+    sidebar.classList.remove('sidebar-display');
+    sidebarWrappper.classList.remove('sidebar-wrapper-display');
 })
